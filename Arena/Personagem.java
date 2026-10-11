@@ -4,7 +4,7 @@ public class Personagem {
     private String nome;
     private final Ataque[] ataques = new Ataque[3];
     private Ataque ataqueAtual;
-    private Status status;
+    private final Status status;
     private final Random rand;
 
     public Status getStatus() {
@@ -47,7 +47,7 @@ public class Personagem {
 
 
     public void atacar(Personagem p){
-        p.receberDano(escolherAtaque().dano(p, ataqueAtual));
+        p.receberDano(escolherAtaque().dano(this, ataqueAtual));
     }
 
 
@@ -68,11 +68,9 @@ public class Personagem {
         }
     }
 
-    public void defender(Ataque ataque){
-        if (ataques[2] != null ) {
+    public void defender(Personagem p, Ataque ataque){
+        if (p.getAtaques()[2] != null ) {
             status.defender(ataque.dano(this, ataque));
-        } else {
-            return;
         }
     }
     public boolean esquivar(){

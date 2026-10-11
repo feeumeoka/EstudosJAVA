@@ -37,7 +37,7 @@ public class Arena{
         else if(validacao.defesaP1()) {
             switch (validacao.getAcao1()) {
                 case Arena.Rodada.DEFENDEU:
-                    p1.defender(p2.escolherAtaque());
+                    p1.defender(p1,p2.escolherAtaque());
                     System.out.println("Mas " + p1.getNome() + " conseguiu defender o ataque do " + p2.getNome());
                     return;
                 case Arena.Rodada.CONTRA_ATACOU:
@@ -50,7 +50,7 @@ public class Arena{
         else if(validacao.defesaP2()){
             switch (validacao.getAcao2()){
                 case Arena.Rodada.DEFENDEU:
-                    p2.defender(p1.escolherAtaque());
+                    p2.defender(p2,p1.escolherAtaque());
                     System.out.println("Mas " + p2.getNome() + " conseguiu defender o ataque do " + p1.getNome());
                     return;
                 case Arena.Rodada.CONTRA_ATACOU:
