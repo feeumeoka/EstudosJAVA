@@ -1,5 +1,7 @@
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ProdutoSQL{
@@ -24,5 +26,34 @@ public class ProdutoSQL{
 
         return sql.executeUpdate();
     }
+
+    public void select() throws SQLException {
+
+        String consultaSQL = """
+                    SELECT * FROM produtos;
+                    """;
+        PreparedStatement sql = con.prepareStatement(consultaSQL);
+        ResultSet resultado = sql.executeQuery();
+
+        while(resultado.next()) {
+
+            int id = resultado.getInt("id");
+            String n = resultado.getString("nome");
+            double p = resultado.getDouble("preco");
+            int q = resultado.getInt("qtde");
+            Date data = resultado.getDate("data_vencimento");
+
+            String dataFormatada[] = data.toString().split("-");
+            String dataBrasil = String.format("%s/%s/%s", dataFormatada[2],dataFormatada[1],dataFormatada[0]);
+
+            System.out.println("Produto: " + n);
+            System.out.println("ID: " + id);
+            System.out.println("Preço: R$ " + String.format("%.2f", p));
+            System.out.println("Quantidade: " + q);
+            System.out.println("Data de vencimento: " + dataBrasil);
+            System.out.println("-----------------------------------------------------");
+        }
+    }
+    
     
 }
