@@ -33,14 +33,53 @@ public class Menu {
         } while (op != Opcao.FIM);
     }
 
+    private String escolherBanco(){
+        
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\nEscolha seu banco de dados.\n");
+        System.out.print("""
+            1. PostgresSQL 
+            2. MySQL
+            """);
+
+        String dataBase;
+
+        do { 
+            String bancoEscolhido = sc.next();
+            
+            if(bancoEscolhido.equals("1")) {
+                return dataBase = "postgres";
+            } else if (bancoEscolhido.equals("2")) {
+                return dataBase = "mysql";
+            }
+
+        } while (true);
+        
+    }
+
     public void acessarMenu() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Seja bem vindo ao Menu.\n");
 
         if(banco == null){
             do { 
-                banco = new BancoDeDados()
-            } while (banco != null);
+                String dataBase = escolherBanco();
+                System.out.println("Informe o nome do Banco de Dados: ");
+                String nomeBanco = sc.next();
+
+                System.out.println("Informe o user: ");
+                String user = sc.next();
+
+                System.out.println("Informe a senha: ");
+                String senha = sc.next();
+
+                System.out.println("Informe a porta: ");
+                String porta = sc.next();
+                
+                banco = new BancoDeDados(nomeBanco, user, senha, porta, dataBase);
+            
+            } while (banco == null);
         }
 
         
@@ -80,9 +119,12 @@ public class Menu {
         System.out.println("select...");
     }
 
+    
+
     public static void main(String args[]) {
         Menu menu = new Menu();
         menu.acessarMenu();
 
         }
+
     }

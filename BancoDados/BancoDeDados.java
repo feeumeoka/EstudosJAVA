@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class BancoDeDados {
     private String nomeBanco;
@@ -40,29 +39,7 @@ public class BancoDeDados {
         MYSQL
     }
 
-    private void escolherBanco(){
-        
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("/nEscolha seu banco de dados./n");
-        System.out.print (
-            "1. PostgresSQL" +
-            "2. MySQL"
-        );
-
-        do { 
-            String bancoEscolhido = sc.next();
-            
-            if(bancoEscolhido.equals("1")) {
-                dataBase = "postgres";
-                break;
-            } else if (bancoEscolhido.equals("2")) {
-                dataBase = "mysql";
-                break;
-            } 
-        } while (true);
-        
-    }
+    
 
     
 }
