@@ -1,0 +1,8 @@
+*.class
+tempCodeRunnerFile.java
+.vscode/
+**/target/
+.idea/
+.DS_Store
+Thumbs.db
+.env
