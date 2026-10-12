@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Menu {
     private Opcao op;
-    static private BancoDeDados banco;
+    private boolean conexao;
 
     public enum Opcao{
         INSERT,
@@ -61,8 +61,9 @@ public class Menu {
     public void acessarMenu() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Seja bem vindo ao Menu.\n");
+        ConexaoBanco con;
 
-        if(banco == null){
+        if(conexao == false){
             do { 
                 String dataBase = escolherBanco();
                 System.out.println("Informe o nome do Banco de Dados: ");
@@ -77,10 +78,15 @@ public class Menu {
                 System.out.println("Informe a porta: ");
                 String porta = sc.next();
                 
-                banco = new BancoDeDados(nomeBanco, user, senha, porta, dataBase);
-            
-            } while (banco == null);
+                BancoDeDados banco = new BancoDeDados(nomeBanco, user, senha, porta, dataBase);
+                
+                con = new ConexaoBanco(banco);
+                con.conexao();
+
+            } while (con.getCon() == null);
         }
+
+        escolherOpcao();
 
         
 

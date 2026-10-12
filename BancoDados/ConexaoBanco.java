@@ -11,11 +11,7 @@ public class ConexaoBanco {
         this.banco = banco;
     }
 
-    public ConexaoBanco(){
-        this.banco = new BancoDeDados();
-    }
-
-    public Connection getConnection() {
+    public Connection getCon() {
         return con;
     }
 
@@ -25,6 +21,7 @@ public class ConexaoBanco {
                 "/" + banco.getNomeBanco();
     }
 
+    
     public void conexao(){
 
         try {
