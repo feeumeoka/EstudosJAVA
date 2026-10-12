@@ -1,4 +1,4 @@
-
+package com.loja;
 import java.sql.Date;
 
 public class Produto {
@@ -6,6 +6,13 @@ public class Produto {
     private double valor;
     private int qtde;
     private Date data;
+
+    public Produto(String nome, double valor, int qtde, Date data){
+        this.nome = nome;
+        this.valor = valor;
+        this.qtde = qtde;
+        this.data = data;
+    }
     
     public String getNome() {
         return nome;

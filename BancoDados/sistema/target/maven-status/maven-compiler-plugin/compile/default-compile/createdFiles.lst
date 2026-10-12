@@ -1,0 +1,8 @@
+com\loja\BancoDeDados.class
+com\loja\BancoDeDados$Banco.class
+com\loja\ProdutoSQL.class
+com\loja\Menu.class
+com\loja\Menu$Opcao.class
+com\loja\Produto.class
+com\loja\Main.class
+com\loja\ConexaoBanco.class

@@ -1,10 +1,11 @@
+package com.loja;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoBanco {
 
-    final private BancoDeDados banco;
+    private BancoDeDados banco;
     private Connection con;
 
     public ConexaoBanco(BancoDeDados banco){
@@ -15,9 +16,9 @@ public class ConexaoBanco {
         return con;
     }
 
-    private String ulr(){
+    private String url(){
         return "jdbc:" + banco.getDataBase() +
-                "://localHost:" + banco.getPorta() +
+                "://localhost:" + banco.getPorta() +
                 "/" + banco.getNomeBanco();
     }
 
@@ -25,7 +26,8 @@ public class ConexaoBanco {
     public void conexao(){
 
         try {
-            con = DriverManager.getConnection(ulr(), banco.getUser(), banco.getSenha());
+            con = DriverManager.getConnection(url(), banco.getUser(), banco.getSenha());
+            System.out.println("Conexão Feita com sucesso!");
         } catch (SQLException erro) {
             System.out.println(erro.getMessage());
         }

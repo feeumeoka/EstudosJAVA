@@ -1,3 +1,4 @@
+package com.loja;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,26 +13,29 @@ public class ProdutoSQL{
     }
 
     public int insert(Produto produto) throws SQLException {
+        try{
+            String consultaSQL = "INSERT INTO produto(nome, preco, qtde, data_vencimento) VALUES(?, ?, ?, ?);";
+            PreparedStatement sql = con.prepareStatement(consultaSQL);
+            
+            sql.setString(1, produto.getNome());
+            sql.setDouble(2, produto.getValor());
+            sql.setInt(3, produto.getQtde());
+            sql.setDate(4, produto.getData());
 
-        String consultaSQL = """
-                    INSERT INTO produtos(nome, preco, qtde, data_vencimento)
-                    VALUES(?, ?, ?, ?);
-                    """;
-        PreparedStatement sql = con.prepareStatement(consultaSQL);
+            System.out.println("Produto inserido com sucesso!");
+
+            return sql.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        }
         
-        sql.setString(1, produto.getNome());
-        sql.setDouble(2, produto.getValor());
-        sql.setInt(3, produto.getQtde());
-        sql.setDate(4, produto.getData());
-
-        return sql.executeUpdate();
     }
 
     public void select() throws SQLException {
 
-        String consultaSQL = """
-                    SELECT * FROM produtos;
-                    """;
+        try {
+            String consultaSQL = "SELECT * FROM produtos;";
         PreparedStatement sql = con.prepareStatement(consultaSQL);
         ResultSet resultado = sql.executeQuery();
 
@@ -52,8 +56,10 @@ public class ProdutoSQL{
             System.out.println("Quantidade: " + q);
             System.out.println("Data de vencimento: " + dataBrasil);
             System.out.println("-----------------------------------------------------");
+        } 
+
+    } catch(SQLException e) {
+            System.out.println(e);
         }
     }
-    
-    
 }

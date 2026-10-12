@@ -1,4 +1,4 @@
-
+package com.loja;
 public class BancoDeDados {
     private String nomeBanco;
     private String user;
